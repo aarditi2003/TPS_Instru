@@ -1,0 +1,116 @@
+\documentclass[10pt]{article}
+\textheight  = 21cm
+\textwidth   = 15cm
+\topmargin = -0.5 cm
+\oddsidemargin= 1cm
+
+\usepackage{amsmath}
+\usepackage[utf8]{inputenx}
+\usepackage[spanish]{babel}
+\usepackage[pdftex]{graphicx} 	%  uso de graficos en general
+\usepackage{subfigure} 		%  poder poner dos graficos como parte de uno
+\usepackage{fancyhdr} 		%  encabezado diferente para pag pares e impares
+\usepackage{epstopdf} 		%  Convertir .eps a .pdf (si fuera necesario)
+\usepackage{titling}
+\usepackage{fancyvrb,fancybox,calc} 
+\usepackage[svgnames]{xcolor} 
+\usepackage{enumerate}
+\usepackage{adjustbox}
+\usepackage{tabu}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{subcaption}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\usepackage[usenames,dvipsnames]{color}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg} % busca en este orden! 
+
+\parindent=0mm
+
+\definecolor{light-gray}{gray}{0.94}
+\definecolor{textgray}{gray}{0.5}
+\newenvironment{verbcode}{\VerbatimEnvironment
+  \begin{Sbox} \color{textgray}\scriptsize
+  \begin{minipage}{\linewidth+2\fboxsep-2\fboxrule-12pt}    
+  \begin{Verbatim}
+}{\end{Verbatim}  
+  \end{minipage}   
+  \end{Sbox} \color{black}\normalsize
+  \fcolorbox{black}{light-gray}{\TheSbox} 
+} 
+
+
+\begin{document}
+\begin{center}
+
+\textsc{\LARGE Instrumentación Biomédica I}\\[0.2cm]
+\textsc{\Large Instituto Tecnológico de Buenos Aires}\\[0.2cm]
+
+% Title
+\HRule \\[0.2cm]
+{ \huge \bfseries  TP 1 - Equipos Médicos Seguros \\[0.2cm] }
+\HRule \\[1cm]
+
+\begin{multicols}{2}
+
+% Author and supervisor
+{\raggedright{}
+\large
+\emph{Profesores:} \ \  Hernán   \textsc{Soares}\\
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  Sofia \textsc{Cerretini} \\
+}
+
+% Integrantes
+\columnbreak
+{\raggedright{}
+\large
+%\newline
+\emph{Alumnos/as:}\  Agustina  \textsc{Arditi} \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Olivia  \textsc{Mayo}\\
+\  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Mora  \textsc{Lauria}\\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Santiago \textsc{Garcia} \\
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Valentina \textsc{Jeon} \\
+}
+\end {multicols}
+
+\vspace{0.5cm}
+
+\begin{adjustbox}{max width=\textwidth}
+
+\tabulinesep=1.8mm
+
+  \begin{tabu}{|  l | c |}
+    \hline
+     \ \ \ Presentación  &       \ \ \  \ \ \  \ \ \   \ \ \ \ \ \  \\ \hline
+     \ \ \ Desarrollo &  \\ \hline
+     \ \ \ Conclusiones &   \\ \hline
+    \ \ \  Nota Final &  \\ \hline \hline
+     \ \ \  Firma y Fecha  \ \ \ \ \ \ \ \ \ &   \\
+    \hline
+  \end{tabu}
+\end{adjustbox}
+
+\end{center}
+
+\vspace{0.2cm}
+
+
+\pagestyle{fancy}
+\headheight=60pt 	%para cambiar el tamaño del encabezado
+\fancyhead[L]	{	Instrumentación Biomédica I -  ITBA - 2026   	}					
+\fancyhead[R] 	{	TP 1  }
+
+
+%=======================================================================================================
+
+\newpage
+
+\input{secciones/introduccion}
+\input{secciones/marco_teorico}
+\input{secciones/practica}
+\input{secciones/resultados}
+\input{secciones/conclusiones}
+
+\end{document}
