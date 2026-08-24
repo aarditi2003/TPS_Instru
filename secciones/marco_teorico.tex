@@ -1,10 +1,10 @@
 \section{Marco teórico}    
 
 \subsection{Norma IEC 60601}
-    La norma IEC-60601 es una serie de estándares internacionales emitida por la Comisión Electrotécnica Internacional que
+La norma IEC-60601 es una serie de estándares internacionales emitida por la Comisión Electrotécnica Internacional que
 especifica los requisitos generales para la seguridad básica y el desempeño esencial de los equipos electromédicos (EM). 
 Esta norma describe mecanismos rigurosos para proteger al paciente, al operador y al entorno de riesgos eléctricos (choques,
-corrientes de fuga), mecánicos, térmicos, radiaciones no deseadas y fallas funcionales. Se relaciona directamente con
+corrientes de fuga), mecánicos, térmicos, radiaciones no deseadas y demás fallas funcionales. Se relaciona directamente con
 la norma ISO 14971 (Gestión de Riesgos en Dispositivos Médicos), la cual exige un análisis integral de riesgos durante todo el
 ciclo de vida del producto para garantizar que los beneficios clínicos superen cualquier riesgo residual.
 
@@ -12,22 +12,42 @@ La estructura de la IEC-60601 se divide en una norma general (IEC 60601-1), norm
 compatibilidad electromagnética, alarmas, usabilidad) y normas específicas (serie IEC 60601-2-X para equipos particulares
 como electrocardiógrafos o desfibriladores). En la práctica clínica y de ingeniería biomédica, se aplica en las etapas
 de diseño, certificación, recepción de equipamiento, mantenimiento preventivo e inspección periódica en instituciones de salud
-para validar que los equipos operen dentro de tolerancias seguras
+para validar que los equipos operen dentro de tolerancias seguras.
 
 \subsection{Seguridad y eficacia de equipos médicos}
 Para que un equipo médico pueda utilizarse de manera confiable en un entorno clínico, 
 debe cumplir dos condiciones fundamentales: ser seguro y ser eficaz.
 
 La seguridad está relacionada con la capacidad del equipo para evitar daños al paciente y al operador durante 
-su utilización. Esto incluye la protección frente a descargas eléctricas, corrientes de fuga, problemas de aislamiento
-y otros riesgos que puedan surgir durante el funcionamiento normal o ante una condición de falla.
-La eficacia, en cambio, se relaciona con la capacidad del equipo para cumplir correctamente con la función para la
- cual fue diseñado. En el caso de un monitor, por ejemplo, implica que las variables fisiológicas que mide se encuentren
- suficientemente próximas a los valores reales o de referencia y que sus resultados sean reproducibles. 
+su utilización. Dentro de este concepto se incluyen los riesgos eléctricos, como las descargas y las corrientes de fuga,
+ así como otros riesgos que pueden surgir durante el funcionamiento del dispositivo. La norma IEC-60601 contempla 
+diferentes medios de protección destinados a limitar estos riesgos.
+
+Por otro lado, la eficacia se relaciona con la capacidad del equipo para cumplir correctamente con la función para la
+ cual fue diseñado. En este contexto, resulta importante que las variables fisiológicas medidas sean suficientemente 
+cercanas a los valores de referencia y que los resultados puedan reproducirse bajo las mismas condiciones.
+
 Ambos aspectos son importantes y están relacionados entre sí. Un equipo puede presentar buenas mediciones,
  pero si existe un riesgo eléctrico para el paciente, no puede considerarse adecuado para su utilización clínica. 
  Del mismo modo, un equipo eléctricamente seguro que entregue mediciones incorrectas tampoco cumpliría correctamente
-   su función.
+ su función. De esta forma, tanto la seguridad como la eficacia deben presentar buenos resultados simultáneamente para 
+ que un equipo médico pueda considerarse apto para su uso clínico.
+
 \subsection{Parte aplicable}
+Dentro de la evaluación de la seguridad de los equipos médicos también es importante considerar las partes aplicadas.
+Se conoce como parte aplicada a cualquier componente del equipo que entra en contacto con el paciente durante su utilización 
+de manera intencional y que resulta necesario para que el dispositivo pueda cumplir su función. Debido a este contacto directo, 
+las partes aplicadas deben cumplir requisitos específicos de protección frente a corrientes eléctricas y otros riesgos.
+ En los equipos observados durante la práctica se pueden identificar como ejemplos los electrodos de un electrocardiógrafo
+ o el sensor de saturación de un oxímetro.
 
 \subsection{Analizadores}
+Para llevar a cabo los ensayos de la práctica se utilizaron dos analizadores distintos de FLUKE destinados a verificar 
+la seguridad y la eficacia de equipos médicos. Estos instrumentos permiten generar condiciones de prueba conocidas y
+ realizar mediciones que luego pueden compararse con los límites establecidos por la normativa o con valores de referencia.
+
+El primer analizador utilizado fue el Fluke ESA612, un instrumento portátil que permite realizar ensayos de seguridad eléctrica
+ en equipos médicos. Este analizador puede medir la resistencia a tierra, las corrientes de fuga y la resistencia del aislamiento,
+ entre otros parámetros. Su portabilidad lo hace adecuado para su uso en entornos clínicos y durante inspecciones periódicas. 
+Este dispositivo fue utilizado tanto para realizar un análisis de seguridad como de eficacia a la hora de evaluar el funcionamiento 
+de un electrocardiógrafo y monitor multiparamétrico.
