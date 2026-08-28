@@ -4,10 +4,46 @@
 
 \subsubsection{Resistencia a tierra}
 
+En una primera instancia, se realizó la medición de resistencia a tierra con el equipo apagado, resultando esta de: $0.532 \,\Omega$.
+En una segunda instancia, se midió la misma magnitud pero efectuando la resistencia del cable como cero relativo. La misma fue de: $0.500 \,\Omega$, concluyendo entonces que la resistencia del cable era de $0.03 \,\Omega$.
+
+En el uso de equipos electrónicos, y particularmente equipos médicos, la existencia de una tierra de protección es un factor de seguridad crucial. No sólo permite aislar la referencia del circuito del equipo conectado al paciente, sino que
+    actúa como una vía de descarga de la corriente en caso de que haya una falla en el equipo, evitando que ésta viaje a través de la persona manipulándolo. Consecuentemente, es esperable que la resistencia ofrecida por el equipo a esta conexión
+    sea baja, de manera que la corriente encuentre un camino hacia tierra con poca oposición y no lo haga a través de las personas. De esta manera, $0.500 \,\Omega$ es un valor aceptable.
+
+Por otro lado, es necesario resaltar la posibilidad del equipo EAS612 de poder establecer un "cero" relativo al efectuar estas mediciones. Debido a que los instrumentos empleados para medir presentan imprecisiones, gracias a su fabricación, es muy
+    importante contar con un mecanismo mediante el cuál deshacerse de ellas y poder medir realmente la resistencia a tierra del equipo. En este caso, como se mencionó previamente, el cable utilizado presentaba una resistencia de  $0.03 \,\Omega$, lo cual
+    permitió establecer que la resistencia efectiva era menor que los $0.532 \,\Omega$ registrados inicialmente.
 \subsubsection{Consumo de corriente}
 
 \subsubsection{Corrientes de fuga}
 
+\underline{Corrientes de fuga a Tierra}
+
+En primer lugar, el EAS612 midió la corriente de fuga a tierra con el equipo sin alimentar, funcionando únicamente con su batería interna. La misma fue de: $1.7 \mu A$. Esta corriente es considerablemente baja, tal como el orden de su magnitud indica, producto de que
+    es esperable que el equipo no tenga fugas a tierra, dado que eso representaría una falla. Tanto la alimentación, como la pieza metálica y la carcasa del dispositivo están aislados del circuito del equipo y conectados a tierra en caso de un desperfecto y descarga que
+    que deba ser evacuada. Es previsible que ésta corriente sea de bajo amperaje ya que, en caso contrario, implicaría una falla en el funcionamiento y la aislación del equipo. Sin embargo, dentro de las posibles causas de que ésta no sea cero, se encuentran: efectos de inducción
+    electromagnética del entorno en la generación de una corriente y, si bien el equipo se encontraba apagado, el consumo de energía para encender el botón de ON/OFF.
+
+En segundo lugar, se procedió con el registro de la misma corriente pero con el equipo alimentado con corriente alterna de 220 V, con fase y neutro correctamente. La misma fue de: $29.6 \mu A$. La razón de este incremento se debe a que, al tener alimentación eléctrica, 
+    la corriente inducida en el equipo es mayor. De todas maneras, se mantiene en el orden de los microamperes, lo cual coincide con lo mencionado previamente.
+
+En tercer lugar, la norma IEC - 60601 establece condiciones de falla en las cuales evaluar el equipo. La generada por el EAS612 consistió en impedir la conexión con el neutro de la red eléctrica. La corriente medida fue de: $52.8 \mu A$. Este aumento puede explicarse mediante dos casos. Por un lado,
+    la falta del neutro hace que la corriente que ingrese al equipo tenga que ser evacuada por tierra ya que no hay otra vía posible. Por otro lado, la ausencia del neutro permite que la fase funcione como una antena RF, ya que no hay corriente en sentido opuesto por el neutro que cancele los efectos
+    de radiación emitida. Consecuenemente, toda esta induce una corriente mucho mayor sobre tierra, la cual aumentó con respecto a los casos anteriores. No obstante, el orden sigue siendo de $\mu A$.
+
+\underline{Corriente de fuga por la pieza metálica}
+
+La primera medición realizada fue de dicha magnitud con la tierra y neutro conectados correctamente. La corriente detectada fue de: $0.2 \mu A$. Resulta razonable esperar que ésta corriente sea lo más baja posible con la tierra conectada correctamente, dado que están conectadas internamente y toda la corriente
+    debería irse por allí. Sin embargo, esta leve circulación se debe a que, como se registró previamente, la conexión a tierra tiene una pequeña impedancia, lo cual provoca que parte de ésta se fuge a través de la pieza metálica a tierra.
+
+En un segundo paso, se efectuó la misma medición pero con la conexión a neutro abierta, la cual fue de: $0.2 \mu A$ también. Comparativamente con la corriente a tierra sin neutro, ésta es considerablemente menor en el órden de los microamperes, dado que se está registrando la corriente inducida en el chásis
+    y no la del cable a tierra, que siempre distinta. 
+
+Por último, se registró ésta corriente con la tierra abierta, la cual fue de: $29.7 \mu A$. Al observar la corriente de fuga a tierra, ambos valores son prácticamente iguales, con una disidencia del $0.034 \%$ Esto es lógico ya que, al inhabilitar la conexión a tierra, el único medio por el cual fugar
+    cualquier corriente inducida es mediante la pieza metálica y su conexión al EAS612, por lo cual esta misma se evacúa por ella.
+
+\underline{Corriente de fuga a través de partes aplicadas}
 \subsubsection{Resistencia de aislamiento}
 
 \subsection{Resultados de los ensayos de eficacia}
