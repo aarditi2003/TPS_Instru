@@ -16,6 +16,14 @@ Por otro lado, es necesario resaltar la posibilidad del equipo EAS612 de poder e
     permitió establecer que la resistencia efectiva era menor que los $0.532 \,\Omega$ registrados inicialmente.
 \subsubsection{Consumo de corriente}
 
+El ensayo de consumo de corriente sirve para saber cuánta corriente le pide a la red el equipo bajo prueba. El equipo médico se enchufa al receptáculo de prueba del ESA612, que queda intercalado entre la red y el dispositivo y mide la corriente que circula por esas conexiones. 
+    La escala se selecciona en amperes. 
+
+El valor por sí solo no dice demasiado: lo que le da sentido es compararlo con el consumo que declara el fabricante en el manual del equipo o en la etiqueta. Si el consumo medido resulta bastante mayor que el declarado puede haber un problema en la fuente de alimentación, 
+    aislaciones degradadas o algún componente en falla, y si resulta mucho menor puede ser que alguna etapa del equipo no esté funcionando. Conocer el consumo real también permite verificar que la instalación y las protecciones del sector estén bien dimensionadas, 
+    algo que importa en un ambiente clínico donde varios equipos comparten la misma línea.
+
+
 \subsubsection{Corrientes de fuga}
 
 \underline{Corrientes de fuga a Tierra}
@@ -45,5 +53,20 @@ Por último, se registró ésta corriente con la tierra abierta, la cual fue de:
 
 \underline{Corriente de fuga a través de partes aplicadas}
 \subsubsection{Resistencia de aislamiento}
+
+El último ensayo de seguridad fue el de resistencia de aislamiento, que sirve para comprobar que las partes del equipo que tienen que estar eléctricamente separadas realmente lo estén. El ESA612 inyecta 500 V de continua entre los dos puntos a evaluar, mide la corriente que circula y
+    con la ley de Ohm calcula la resistencia. Las conexiones las arma el propio analizador al elegir el tipo de medición, así que no hay que hacerlas a mano. A diferencia de los ensayos anteriores, este se realiza con el equipo médico apagado.
+
+Se hicieron tres mediciones, todas con la escala en $M\Omega$. La primera fue entre la red y la tierra de protección: el analizador une la fase y el neutro entre sí y mide contra PE. El resultado fue \textit{Open Line}, es decir que la resistencia superó el rango que el instrumento
+    puede leer y se considera que tiende a infinito. Era lo esperado. Si hubiera una resistencia baja entre la red y PE existiría un camino de conducción entre la fase y todas las partes metálicas del equipo conectadas a tierra de protección, y quien tocara el chasis quedaría expuesto
+    a la tensión de línea.
+
+La segunda medición fue entre la tierra de protección y las partes aplicadas, y dio $100.4 \,M\Omega$. Fue la única de las tres que arrojó un valor finito, lo cual tiene sentido: el circuito del paciente no está completamente flotante sino acoplado a la referencia del equipo a través
+    de la barrera de aislación. Lo que interesa acá es el orden de magnitud, y una resistencia de $M\Omega$ es suficientemente alta como para considerar que están aislados. De hecho, si por una falla apareciera la tensión de red sobre ese camino, la corriente que llegaría al paciente
+    sería de unos pocos microamperes, que es el mismo orden de las corrientes de fuga por partes aplicadas medidas antes. Vale aclarar que el rango del ESA612 para esta medición llega hasta $100 \,M\Omega$, con una exactitud de $\pm(7.5\%$ de la lectura $+ \,0.2 \,M\Omega)$, así que
+    el valor obtenido está justo en el borde de la escala y el aislamiento real podría ser incluso mayor sin que el analizador pueda distinguirlo.
+
+La tercera medición fue entre las partes aplicadas y la red, y volvió a dar \textit{Open Line}. Es el resultado más relevante de los tres para la seguridad del paciente, ya que las partes aplicadas son las que entran en contacto con él y no puede existir ningún camino de conducción
+    entre ellas y los 220 V. Los tres valores en conjunto indican que el aislamiento del equipo es adecuado.
 
 \subsection{Resultados de los ensayos de eficacia}
