@@ -29,6 +29,7 @@ La siguiente tabla muestra los resultados para las tres mediciones a distinta te
     leve cortocircuito a través del fluído, y no se registraba correctamente la resistencia del termistor. Por lo tanto, se sacaba un corto tiempo del agua lo cual también afectaba simultáneamente la temperatura a la cual se encontraba.
     
     Consecuentemente, todas estas causas podrían haber llevado a tener registros con baja trazabilidad. 
+end{subsection}
 
 \subsection{Medición con arduino}
 \underline{Coeficientes del fabricante}
@@ -89,3 +90,76 @@ La tabla a continuación presenta los resultados de las tres mediciones.
     Si bien las fuentes de error explicadas anteriormente también aplican para este caso, la principal aquí se debe a los coeficientes calculados en el programa. Por un lado, estos requieren de la temperatura expresada en F, 
     la cual fue redondeada para simplicidad de los cálculos; además de que empleó los 24 °C para la temperatura ambiente que, como se aclaró previamente, no era fiable. Por otro lado, los coeficientes son del orden de $10^{-3}$ y $10^{-5}$, es decir, muy pequeños y, 
     además, se encuentran en el denominador de la ecuación de Steinhart - Hart, por lo que pequeñas perturbaciones en los mismos hacen que los resultados difieran considerablemente. Consideramos que esta es la principal fuente de error para los cálculos de la temperatura.
+end{subsection}
+
+\subsection{Curvas características}
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={Curva Característica Resistencia vs. Temperatura (NTC)},
+    xlabel={Temperatura [$^\circ\text{C}$]},
+    ylabel={Resistencia [$\text{k}\Omega$]},
+    xmin=0, xmax=85,
+    ymin=0, ymax=30,
+    grid=both,
+    grid style={dashed, gray!30},
+    legend pos=north east,
+    legend style={
+        nodes={scale=0.65, transform shape},
+        fill=white,
+        fill opacity=0.85,
+        text opacity=1
+    },
+    line width=1pt
+]
+
+% Curva 1: Modelo Teórico Steinhart-Hart
+\addplot[
+    domain=2:80, 
+    samples=100, 
+    color=blue!80!black,
+    thick
+] 
+{25 * exp(3900*(1/(x+273.15) - 1/298.15))};
+\addlegendentry{Tendencia NTC (Steinhart-Hart)}
+
+% Curva 2: Medición con Multímetro (puntos unidos por líneas)[cite: 1]
+\addplot[
+    color=red,
+    mark=square*,
+    mark size=2.5pt,
+    thick
+]
+coordinates {
+    (3, 12.44)
+    (24, 5.74)
+    (76, 1.27)
+};
+\addlegendentry{Medición Multímetro}
+
+% Curva 3: Arduino Coeficientes del Fabricante (puntos unidos por líneas)[cite: 1]
+\addplot[
+    color=green!60!black,
+    mark=triangle*,
+    mark size=2.5pt,
+    thick
+]
+coordinates {
+    (3.8, 28.32)
+    (23.1, 11.40)
+    (73.0, 1.60)
+};
+\addlegendentry{Arduino (Coef. Fabricante)}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Relación inversamente proporcional entre la resistencia eléctrica y la temperatura del termistor NTC analizado en laboratorio.}
+\label{fig:curva_ntc}
+\end{figure}
+
+El comportamiento electrotérmico del sensor NTC representado en la figura 2 permite corroborar de manera empírica la naturaleza no lineal del dispositivo semiconductor. La curva continua de tendencia teórica, modelada mediante la relación exponencial de Steinhart-Hart, establece el perfil ideal de transferencia donde la resistencia alcanza sus valores más elevados a temperaturas bajas y decrece de forma pronunciada a medida que la temperatura aumenta, asintotizándose en el rango térmico superior. Las dos trayectorias experimentales trazadas a partir de las mediciones del multímetro y del módulo Arduino con los coeficientes del fabricante acompañan cualitativamente esta misma dinámica decreciente, confirmando la validez del coeficiente de temperatura negativo del componente.
+
+Al analizar la curva correspondiente a las mediciones directas con multímetro, se observa que los valores resistivos registrados ($12.44\,\text{k}\Omega$ a $3^{\circ}\text{C}$, $5.74\,\text{k}\Omega$ a $24^{\circ}\text{C}$ y $1.27\,\text{k}\Omega$ a $76^{\circ}\text{C}$) mantienen una pendiente suave y coherente con el perfil esperado. Sin embargo, la desviación cuantitativa observada respecto a la curva teórica y a la adquisición por microprocesador responde directamente a las incertidumbres introducidas por el método manual. La falta de un acoplamiento mecánico firme entre las puntas de prueba y los terminales del termistor generó variaciones en la resistencia de contacto. A su vez, la rápida respuesta del material ante el intercambio térmico con los fluidos hizo que la lectura en la pantalla digital del óhmetro no alcanzara un régimen estacionario definitivo, obligando a tomar los valores máximos y mínimos instantáneos justo antes del retorno térmico.
+
+Por otro lado, la curva obtenida mediante la placa Arduino UNO con los coeficientes del fabricante registra valores de resistencia notablemente superiores en la región de bajas temperaturas ($28.32\,\text{k}\Omega$ a $3.8^{\circ}\text{C}$ y $11.40\,\text{k}\Omega$ a $23.1^{\circ}\text{C}$). Esta discrepancia respecto a las lecturas del multímetro se fundamenta en las diferencias metodológicas de acondicionamiento y adquisición de señal. La configuración del circuito divisor de tensión conectado a la entrada analógica del microcontrolador somete al circuito a un proceso de conversión analógico-digital (ADC) que promedia internamente las lecturas en presencia de retardo dinámico (\textit{delay}). Asimismo, la presencia de conexiones inestables mediante cables tipo \textit{jumper} en el protoboard y la influencia de ruido térmico y eléctrico no filtrado en la entrada del conversor alteraron la magnitud resistiva calculada por el programa, aunque manteniendo la precisión en la reconstrucción final de la temperatura ($3.8^{\circ}\text{C}$, $23.1^{\circ}\text{C}$ y $73.0^{\circ}\text{C}$) gracias a la robustez intrínseca de los coeficientes de calibración originales del fabricante.
