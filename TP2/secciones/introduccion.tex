@@ -1,2 +1,35 @@
 \section{Introducción}
+La medición de temperatura constituye una parte fundamental de la 
+instrumentación biomédica, ya que permite obtener información sobre el estado
+ y funcionamiento de distintos sistemas y dispositivos utilizados en el ámbito de la salud. 
+ Para realizar esta medición se emplean sensores de temperatura, dispositivos capaces de 
+ transformar una variación de temperatura en una variación de alguna magnitud eléctrica, como 
+ corriente o tensión, que pueda ser posteriormente adquirida y procesada por un 
+ sistema electrónico. Entre los diferentes tipos de sensores existentes se encuentran los termopares, 
+los RTD (Resistance Temperature Detectors) y los termistores, cada uno con sus características 
+particulares de sensibilidad, linealidad y rango de medición.
 
+En este trabajo se estudia un termistor NTC, cuyo funcionamiento se basa 
+en la variación de su resistencia eléctrica con la temperatura. Al tratarse de un
+ dispositivo con coeficiente de temperatura negativo, su resistencia disminuye a 
+medida que aumenta la temperatura. Esta relación, además, es de carácter no lineal,
+ por lo que la resistencia medida debe relacionarse con la temperatura mediante un
+  modelo matemático adecuado. Para ello, se utiliza la ecuación de Steinhart-Hart,
+que permite obtener la temperatura del termistor a partir de su resistencia eléctrica.
+
+La práctica realizada consistió específicamente en la implementación de un circuito
+ de medición de temperatura utilizando el termistor NTC, una resistencia de 10 k$\Omega$
+y un Arduino UNO, montados sobre una protoboard. La tensión generada por el divisor resistivo 
+formado por el NTC y la resistencia fija es adquirida por el Arduino
+ y convertida en un valor digital mediante su conversor analógico-digital (ADC). 
+A partir de esta medición, el programa permite determinar la resistencia del termistor y, 
+utilizando la ecuación de Steinhart-Hart, estimar la temperatura correspondiente.
+
+La finalidad de este trabajo es evaluar el funcionamiento de los sensores de temperatura utilizados,
+analizando cómo varía su resistencia eléctrica frente a diferentes temperaturas. 
+Para ello, los sensores fueron sometidos a tres condiciones de temperatura: 
+temperatura ambiente, agua caliente con una temperatura aproximada de 80 °C y agua con hielo, cercana a 0 °C. 
+A partir de las mediciones realizadas en cada condición, se busca observar la relación entre la temperatura
+ y la resistencia de los sensores, y analizar su comportamiento frente a los cambios de temperatura. 
+ De esta manera, la experiencia permite comprender de forma práctica el principio de funcionamiento
+  de este tipo de sensores y evaluar su respuesta ante distintas condiciones térmicas.
