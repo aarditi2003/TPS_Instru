@@ -1,2 +1,44 @@
 \section{Anexo}
 
+\subsection{Conversión analógico-digital}
+
+La tensión $V_{out}$ generada por el divisor resistivo es una señal analógica. Para que pueda ser procesada por el Arduino, esta tensión es convertida a un valor digital mediante el conversor analógico-digital (ADC).
+
+El Arduino UNO utiliza un ADC de 10 bits en sus entradas analógicas. Por lo tanto, la conversión dispone de:
+
+\begin{equation}
+2^{10}=1024
+\end{equation}
+
+niveles de cuantización, correspondientes a valores digitales entre 0 y 1023.
+
+Considerando una tensión de referencia $V_{ref}$, la tensión aplicada a la entrada analógica puede expresarse idealmente como:
+
+\begin{equation}
+V_{out}
+=
+\frac{ADC}{1023}V_{ref},
+\end{equation}
+
+donde $ADC$ representa el valor digital obtenido por el conversor.
+
+En el circuito utilizado, la tensión de alimentación es de $5~\mathrm{V}$ y se utiliza como referencia para la medición, por lo que:
+
+\begin{equation}
+V_{out}
+=
+\frac{ADC}{1023}5~\mathrm{V}.
+\end{equation}
+
+Combinando esta expresión con la ecuación del divisor resistivo, se obtiene:
+
+\begin{equation}
+R_{NTC}
+=
+R
+\left(
+\frac{1023}{ADC}-1
+\right).
+\end{equation}
+
+Esta expresión permite calcular directamente la resistencia del termistor a partir del valor obtenido por la entrada analógica del Arduino. La ecuación coincide con la utilizada en el programa proporcionado por la cátedra para obtener la resistencia del NTC a partir de la lectura del ADC. 

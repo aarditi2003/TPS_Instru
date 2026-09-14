@@ -1,2 +1,48 @@
-\section{Marco teórico}    
+\section{Marco teórico}
+
+\subsection{Sensores de temperatura}
+
+Un sensor de temperatura es un transductor que permite transformar una variación de temperatura en una variación de algún parámetro eléctrico. De esta manera, la temperatura puede ser medida indirectamente a partir de una magnitud eléctrica que pueda ser adquirida y procesada por un sistema electrónico.
+
+Existen diferentes tipos de sensores de temperatura, entre los que se encuentran los termopares, los sensores de resistencia (RTD) y los termistores. Cada uno presenta diferentes características de funcionamiento, rango de medición, sensibilidad, linealidad y tiempo de respuesta, por lo que su utilización depende de los requerimientos de la aplicación.
+
+\subsection{Termistores}
+
+Los termistores son dispositivos semiconductores cuya resistencia eléctrica varía en función de la temperatura. Según el sentido de esta variación, pueden clasificarse en dos grupos principales: NTC (\textit{Negative Temperature Coefficient}) y PTC (\textit{Positive Temperature Coefficient}).
+
+En un termistor NTC, la resistencia disminuye a medida que aumenta la temperatura. Por el contrario, en un termistor PTC, la resistencia aumenta con la temperatura. En ambos casos, la relación inversa entre la resistencia y la temperatura permite utilizarlos como sensores de temperatura. Sin embargo, su respuesta frente a la temperatura es no lineal. Por este motivo, para obtener la temperatura a partir de una resistencia medida es necesario utilizar un modelo matemático que describa adecuadamente esta relación.
+
+En el presente trabajo se utiliza un termistor NTC de 10~k$\Omega$ de valor nominal. Este corresponde a la resistencia del sensor a una determinada temperatura de referencia. Se utiliza la ecuación de Steinhart-Hart para obtener una forma de convertir la relación entre los componentes a una proporcional.
+
+
+\subsection{Ecuación de Steinhart-Hart}
+
+La ecuación de Steinhart-Hart permite relacionar la resistencia eléctrica de un termistor con su temperatura absoluta. Su expresión general es:
+
+\begin{equation}
+\frac{1}{T}
+=
+A+B\ln(R)+C\left[\ln(R)\right]^3,
+\end{equation}
+
+donde $T$ es la temperatura absoluta expresada en kelvin, $R$ es la resistencia eléctrica del termistor expresada en ohmios y $A$, $B$ y $C$ son los coeficientes de Steinhart-Hart.
+
+Despejando la temperatura de la expresión anterior:
+
+\begin{equation}
+T
+=
+\frac{1}
+{A+B\ln(R)+C\left[\ln(R)\right]^3}.
+\end{equation}
+
+La temperatura obtenida mediante esta expresión se encuentra expresada en kelvin. Para convertirla a grados Celsius se utiliza:
+
+\begin{equation}
+T_{^\circ C}=T_K-273.15.
+\end{equation}
+
+Los coeficientes $A$, $B$ y $C$ dependen de las características del termistor y pueden obtenerse a partir de tres pares de valores de resistencia y temperatura. Para ello, se utilizan tres mediciones realizadas a diferentes temperaturas y se resuelve el sistema de ecuaciones correspondiente.
+
+En este trabajo se utilizan tres condiciones de temperatura: ambiente, frío y caliente. A partir de los valores experimentales de resistencia y temperatura obtenidos para cada condición se determinan los coeficientes correspondientes al termistor utilizado.
 
