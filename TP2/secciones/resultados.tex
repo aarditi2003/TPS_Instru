@@ -17,19 +17,17 @@ La siguiente tabla muestra los resultados para las tres mediciones a distinta te
     \end{tabular}
     \end{table}
 
-    Los resultados coinciden con lo esperado, dato que el termistor utilizado tiene un coeficiente negativo, por lo cual a mayores temperaturas, su valor resistivo debería disminuir y, a menores temperaturas, aumentar. Esto es 
-    lo que se observa en la tercera columna de la tabla, en la cual al pasar de 24 °C a 3 °C (descenso), su resistencia aumentó $ 6.7  k\Omega$. Adicionalmente, al pasar de 24 °C a 76 °C (aumento), ésta disminuyó en $ 4.47  k\Omega$.
-    No obstante, al establecer comparaciones en el laboratorio durante la práctica con los otros grupos, todos los resultados fueron muy dispares. 
+    Se observa en la tercera columna de la tabla que los resultados coinciden con lo esperado. Dado que el termistor utilizado tiene un coeficiente negativo, a mayores temperaturas su valor resistivo debería disminuir y, a menores temperaturas, aumentar.
+    Al pasar de 24 °C a 3 °C (descenso), su resistencia aumentó $ 6.7  k\Omega$. Adicionalmente, al pasar de 24 °C a 76 °C (aumento), ésta disminuyó en $ 4.47  k\Omega$.
     
-    Una principal fuente de error, el cual luego se propagó a los coeficientes y que será desarrollado en su correspondiente sección, fue la medición 
-    de la temperatura ambiente, la cual fue de 24 °C cuando realmente esto no erá así y debería haber rondado los 19 °C. Consideramos que esto podría deberse a que se sostuvo el termopar con la camno, transfiriéndole calor a los cables de conexión y aumentandó así la temperatura registrada. A su vez, las conexión con 
-    el tester era inestable, ya que había que ubicarlo manualmente para que ambas terminales estuvieran en contacto y pudiera medir. Incluso, moviéndo el dispositivo el registro variaba considerablemente, y sumado al error intrínseco del multímetro, provoca grandes imcertezas al momento de registrar los datos. Por otro lado,
+    Una principal fuente de error, el cual luego se propagó a lo largo de la práctica, fue la medición de la temperatura ambiente, la cual fue de 24 °C cuando debería haber rondado los 19 °C. Consideramos que esto podría deberse a que se sostuvo el termopar con la mano, transfiriéndole calor a los cables de conexión y aumentando así la temperatura registrada. A su vez, la conexión con 
+    el tester era inestable, ya que había que ubicarlo manualmente para que ambas terminales estuvieran en contacto y pudiera medir. Incluso, moviendo el dispositivo el registro variaba considerablemente, y sumado al error intrínseco del multímetro, provoca grandes incertezas. Por otro lado,
     la variación de la resistencia del termistor respecto a la termperatura era tan rápida que el display del tester se encontraba constantemente en cambio, incluso cuando el mismo se encontraba dentro de los vasos con hielo y agua caliente. Por lo cual, para el caso de temperaturas altas, se tomó el mínimo valor alcanzado antes de que 
     volviera a subir; y en el caso de bajas temperaturas, el máximo valor antes de que comenzara a bajar. Finalmente, otra posible fuente de error podría haber sido que, al efectuar las mediciones con las terminales metálicas del termistor enrrolladas con las puntas del multímetro, cuando se introducían en los vasos con agua, ocurría un 
-    leve cortocircuito a través del fluído, y no se registraba correctamente la resistencia del termistor. Por lo tanto, se sacaba un corto tiempo del agua lo cual también afectaba simultáneamente la temperatura a la cual se encontraba.
+    leve cortocircuito a través del fluido, y no se registraba correctamente la resistencia del termistor. Por lo tanto, se sacaba un corto tiempo del agua lo cual también afectaba simultáneamente la temperatura a la cual se encontraba.
     
     Consecuentemente, todas estas causas podrían haber llevado a tener registros con baja trazabilidad. 
-end{subsection}
+
 
 \subsection{Medición con arduino}
 \underline{Coeficientes del fabricante}
@@ -49,7 +47,7 @@ La siguiente tabla expresa los valores de resistencia y temperatura del termisto
     \end{tabular}
     \end{table}
 
-Al efectuar las mismas mediciones con el circuito de arduino, los valores de las temperaturas (2da columna) coindicen ampliamente con los detectados por el termopar; mientras que 
+Al efectuar las mismas mediciones con el circuito de Arduino, los valores de las temperaturas (2da columna) coindicen ampliamente con los detectados por el termopar; mientras que 
 las resistencias matuvieron la relación inversamente proporcional entre resistividad y temperatura; pese a que las de condición ambiente y altas temperaturas difieren notablemente con las anteriores.
 
 Una fuente de error fue la forma de conexión del termistor. Como muestra la figura del circuito empleado, se usó como base un protoboard pero, como se debía colocar el termistor en los vasos con hielo y agua caliente, se optó por
@@ -90,7 +88,6 @@ La tabla a continuación presenta los resultados de las tres mediciones.
     Si bien las fuentes de error explicadas anteriormente también aplican para este caso, la principal aquí se debe a los coeficientes calculados en el programa. Por un lado, estos requieren de la temperatura expresada en F, 
     la cual fue redondeada para simplicidad de los cálculos; además de que empleó los 24 °C para la temperatura ambiente que, como se aclaró previamente, no era fiable. Por otro lado, los coeficientes son del orden de $10^{-3}$ y $10^{-5}$, es decir, muy pequeños y, 
     además, se encuentran en el denominador de la ecuación de Steinhart - Hart, por lo que pequeñas perturbaciones en los mismos hacen que los resultados difieran considerablemente. Consideramos que esta es la principal fuente de error para los cálculos de la temperatura.
-end{subsection}
 
 \subsection{Curvas características}
 \begin{figure}[htbp]

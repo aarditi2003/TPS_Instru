@@ -10,36 +10,16 @@ los RTD (Resistance Temperature Detectors) y los termistores, cada uno con sus c
 particulares de sensibilidad, linealidad y rango de medición.
 
 En este trabajo se estudia un termistor NTC, cuyo funcionamiento se basa 
-en la variación de su resistencia eléctrica con la temperatura. Al tratarse de un
- dispositivo con coeficiente de temperatura negativo, su resistencia disminuye a 
-medida que aumenta la temperatura. Esta relación, además, es de carácter no lineal,
- por lo que la resistencia medida debe relacionarse con la temperatura mediante un
-  modelo matemático adecuado. Para ello, se utiliza la ecuación de Steinhart-Hart,
+en la variación de su resistencia eléctrica con la temperatura. Para ello, se utiliza la ecuación de Steinhart-Hart,
 que permite obtener la temperatura del termistor a partir de su resistencia eléctrica.
 
 La práctica realizada consistió específicamente en la implementación de un circuito
  de medición de temperatura utilizando el termistor NTC, una resistencia de 10 k$\Omega$
-y un Arduino UNO, montados sobre una protoboard. La tensión generada por el divisor resistivo 
-formado por el NTC y la resistencia fija es adquirida por el Arduino
- y convertida en un valor digital mediante su conversor analógico-digital (ADC). 
-A partir de esta medición, el programa permite determinar la resistencia del termistor y, 
-utilizando la ecuación de Steinhart-Hart, estimar la temperatura correspondiente.
+y un Arduino UNO, montados sobre una protoboard. 
 
-La finalidad de este trabajo es evaluar el funcionamiento de los sensores de temperatura utilizados,
-analizando cómo varía su resistencia eléctrica frente a diferentes temperaturas. 
-Para ello, los sensores fueron sometidos a tres condiciones de temperatura: 
+Se evaluó el funcionamiento de los sensores de temperatura sometiéndolos a tres condiciones de temperatura: 
 temperatura ambiente, agua caliente con una temperatura aproximada de 80 °C y agua con hielo, cercana a 0 °C. 
 A partir de las mediciones realizadas en cada condición, se busca observar la relación entre la temperatura
  y la resistencia de los sensores, y analizar su comportamiento frente a los cambios de temperatura. 
  De esta manera, la experiencia permite comprender de forma práctica el principio de funcionamiento
   de este tipo de sensores y evaluar su respuesta ante distintas condiciones térmicas.
-
-En este sentido, resulta relevante destacar que, si bien los termistores NTC no constituyen
-elementos lineales como los sensores RTD, su linealización mediante modelos como el de
-Steinhart-Hart resulta comparativamente sencilla de implementar por hardware o software,
-lo cual justifica su amplia utilización en equipamiento biomédico tal como monitores
-multiparam\'etricos, incubadoras y cat\'eteres de termodiluci\'on. Sin embargo, dado que
-la precisi\'on de la temperatura estimada depende directamente de la exactitud de los
-coeficientes empleados en dicho modelo, cobra especial importancia analizar en qu\'e
-medida la utilizaci\'on de coeficientes calculados de manera experimental, frente a
-los provistos por el fabricante, puede afectar la fiabilidad de las mediciones obtenidas.
