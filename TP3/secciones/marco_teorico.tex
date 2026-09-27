@@ -1,7 +1,53 @@
 \section{Marco teórico}
+Para comprender el funcionamiento del canal de ECG implementado en esta práctica,
+ es necesario analizar los principales conceptos relacionados con la amplificación y el
+ acondicionamiento de señales biomédicas. En particular, se estudiará el funcionamiento
+ del amplificador de instrumentación AD620, el rechazo de modo común mediante el CMRR
+ y su aplicación en la adquisición de una señal de electrocardiograma.
 
 \subsection{AD620}
+El AD620 es un amplificador de instrumentación integrado cuyo diseño tiene un doble objetivo:
+ la amplificación precisa de señales diferenciales de pequeña amplitud y la supresión de señales de modo común. 
+Este amplificador es ampliamente utilizado en aplicaciones biomédicas debido a su alta impedancia de entrada, 
+bajo nivel de ruido y capacidad para operar con una amplia gama de voltajes de alimentación.
+Estas características hacen que el amplificador de instrumentación sea apropiado para aplicaciones como la adquisición de señales de ECG.
+
+Una de las principales características del AD620 es su alta impedancia de entrada, 
+especificada en el orden de los $10~\mathrm{G}\Omega$. Esto resulta particularmente importante en 
+aplicaciones biomédicas, ya que los electrodos utilizados para adquirir señales fisiológicas 
+presentan una impedancia propia. Si la impedancia de entrada del sistema de medición fuera comparable 
+con la impedancia electrodo-piel, podría producirse un divisor resistivo que atenuara la señal
+ antes de que esta fuera amplificada. Una impedancia de entrada elevada minimiza este efecto 
+y permite obtener una medición más acertada de la señal biológica.
+ 
+Otra ventaja del AD620 es que su ganancia puede configurarse mediante una única resistencia externa $R_G$, conectada entre los terminales de ganancia del integrado.
+La relación entre la ganancia y dicha resistencia está dada por:
+\begin{equation}
+G = 1 + \frac{49{,}4\,\mathrm{k}\Omega}{R_G}
+\end{equation}
+ Por lo tanto, al disminuir el valor de $R_G$, aumenta la ganancia del amplificador, lo que permite adaptar la amplificación a la amplitud de la señal que se desea medir.
+ En el caso del ECG, resulta necesario seleccionar cuidadosamente la ganancia para que la señal pueda ser observada y procesada sin amplificar excesivamente el ruido ni reducir significativamente el ancho de banda.
 
 \subsection{CMRR}
+En una medición es necesario distinguir entre las señales diferenciales y las señales de modo común. La señal diferencial es aquella que buscamos medir y corresponde a la diferencia de potencial entre los dos terminales de entrada del amplificador según la siguiente expresión:
+\begin{equation} 
+V_D = V_1 - V_2 
+\end{equation}
+Por el otro lado, las señales de modo común son aquellas que aparecen simultáneamente en ambos
+ terminales de entrada con la misma amplitud, fase y frecuencia y se escriben como: 
+\begin{equation} 
+V_{CM} = \frac{V_1 + V_2}{2}
+\end{equation}
+
+La capacidad de un amplificador para rechazar las señales de modo común se caracteriza mediante el CMRR (\textit{Common Mode Rejection Ratio}), definido como la relación entre la ganancia diferencial y la ganancia en modo común: 
+\begin{equation} 
+CMRR = \frac{G_D}{G_{CM}}
+\end{equation} 
+También puede expresarse en decibeles como: 
+\begin{equation}
+CMRR_{\mathrm{dB}} = 20\log_{10}\left(\frac{G_D}{G_{CM}}\right)
+\end{equation} 
+Un CMRR elevado indica que el amplificador amplifica principalmente la diferencia de potencial entre sus entradas, mientras que atenúa las señales presentes simultáneamente en ambas. 
+Esta característica resulta especialmente importante en aplicaciones biomédicas, donde pueden existir interferencias externas que se acoplan de manera similar a los dos electrodos. 
 
 \subsection{Aplicación en ECG}
