@@ -1,7 +1,30 @@
 \section{Práctica de laboratorio}
 
-\subsection{Medición de la ganancia diferencial}
+Durante la práctica de laboratorio se implementó en un protoboard un canal básico de adquisición de una señal electrocardiográfica (ECG), utilizando un amplificador de instrumentación AD620 y los dos amplificadores operacionales del integrado TL082. El circuito se construyó a partir del esquema previamente diseñado y simulado en LTspice.
 
-\subsection{Medición de la ganancia de modo común}
+Los componentes utilizados para la implementación fueron:
 
-\subsection{Implementación del canal de ECG}
+\begin{itemize}
+    \item Amplificador de instrumentación AD620.
+    \item Integrado TL072, utilizando dos de sus amplificadores operacionales.
+    \item Resistencia de $100~\mathrm{k}\Omega$ para la configuración inicial de $R_G$ del AD620.
+    \item Resistencias de $1~\mathrm{k}\Omega$ y $10~\mathrm{k}\Omega$ para modificar la ganancia del AD620.
+    \item Capacitores de $10~\mu\mathrm{F}$ y $47~\mathrm{nF}$
+    \item 3 electrodos para la adquisición del ECG
+    \item Protoboard y cables de conexión.
+    \item 2 baterías de $9~\mathrm{V}$
+\end{itemize}
+
+La disposición de los componentes dentro del circuito experimental se describe en la Figura #. 
+
+
+PONER FIGURA # DEL CIRCUITO
+
+
+
+
+Para realizar la adquisición de la señal ECG se colocaron tres electrodos: uno en el brazo izquierdo, otro en el centro del pecho y un tercero en la pierna izquierda, utilizado como referencia. La señal proveniente de los electrodos fue conectada a las entradas del amplificador de instrumentación AD620.
+
+Inicialmente, se configuró el AD620 utilizando una resistencia $R_G$ de $100~\mathrm{k}\Omega$. La señal obtenida a la salida del circuito fue observada a través de un osciloscopio para evaluar su amplitud y forma de onda, y modificar el valor de la resistencia para observar su efecto en la ganancia del AD620. 
+
+Posteriormente, se analizaron mediante simulación distintas configuraciones de los filtros con el objetivo de estudiar el efecto de sus frecuencias de corte sobre la señal electrocardiográfica y evaluar posibles modificaciones del circuito.
