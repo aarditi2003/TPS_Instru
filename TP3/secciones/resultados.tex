@@ -39,7 +39,14 @@ una pérdida de información relevante de la señal electrocardiográfica.
 
 \subsection{Análisis mediante simulación}
 
-Para analizar el comportamiento del circuito bajo distintas condiciones, se empleó el programa \textit{LT Spice}. A continuación se presentan las
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Circuito normal.JPG}
+    \caption{Circuito modelado}
+    \label{fig:fft_antes}
+\end{figure}
+
+Para analizar el comportamiento del circuito anterior bajo distintas condiciones, se empleó el programa \textit{LT Spice}. A continuación se presentan las
 distintas pruebas realizadas, en las cuales incluso se pudo hacer evaluaciones bajo componentes de valores no comerciales pero de mayor precisión
 numérica para mayor exactitud en la salida de dicha simulación. 
 
@@ -72,3 +79,80 @@ del filtro pasa bajos. Fue tomado a consideración que la señal no tiene ruido 
 
 Luego, las figuras n° PONER NÚMEROS muestran los casos para $R_{G}$ de 100 y 10 $k \Omega$. Ambas permiten comprobar que, a menor valor de resistencia, mayor es la amplificación del AD620 y la
 del ECG, dado que en la figura original el gráfico ronda los 4,5 V mientras que en los otros tres, se acercan incluso a 6 V, corroborando el aumento de la ganancia.
+
+
+\begin{itemize}
+    \item Modificaciones en el filtro pasa bajos
+\end{itemize}
+
+El circuito del ECG planteado está conformado en su última etapa de amplificación por un filtro pasa bajos, cuya importancia radica en la eliminación de ruidos de alta frecuencia. Particularmente, la mayor
+fuente de ruido es la interferencia electromagnética del ruido de línea, cuyo componente frecuencial es de 50 Hz. En primer lugar, la figura PONER NÚMERO muestra que, si se trata de un ruido de modo común presente en la señal de entrada,
+el modo diferencial del AD620 lo logra eliminar correctamente. Esto fue modelado con una componente senoidal en paralelo a la señal de entrada.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Simulacion ruido de línea 100k, filtro normal.JPG}
+    \caption{Salida del ECG con ruido presente en la señal}
+    \label{fig:fft_antes}
+\end{figure}
+
+
+Luego, con el objetivo de simular la interferencia electromagnética en el cableado sumado a la señal de entrada, se realizó el circuito de la figura PONER NÚMERO, donde se modeló dicha interferencia con el agregado
+de una señal senoidal de frecuencia de 50 Hz a la salida del AD620. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Simulacion ruido de linea 100k, pasabajos 47n.JPG}
+    \caption{Circuito con ruido de línea en el cableado}
+    \label{fig:fft_antes}
+\end{figure}
+
+Por un lado, se empleó el filtro con los valores iniciales de 47 $nF$ y 39 $k \Omega$ cuya frecuencia de corte es de 43,4 Hz. En segundo lugar, se empleó un capacitor de
+100 $nF$, resultando en una frecuencia de corte de 20,4 Hz. Esto permitió corroborar, como se observa en las figuras PONER NÚMERO, que en el segundo caso la señal se ve más limpia porque el filtrado tiene una frecuencia de corte ampliamente menor
+que 50 Hz, quedando esta en la zona de completa atenuación.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Foto Simulacion ruido de linea 100k, pasabajos 47n.JPG}
+    \caption{Salida del ECG con ruido presente en los cables y filtro normal}
+    \label{fig:fft_antes}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Simulacion ruido de linea 100k, pasabajos 100n.JPG}
+    \caption{Salida del ECG con ruido presente en los cables y filtro de 100 nF}
+    \label{fig:fft_antes}
+\end{figure}
+
+\begin{itemize}
+    \item Modificaciones en el filtro pasa altos
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Circuito ruido baja freq.JPG}
+    \caption{Circuito con ruido de baja frecuencia}
+    \label{fig:fft_antes}
+\end{figure}
+
+El circuito planteado presenta un filtro pasa altos a la salida del AD620, cuya implementación permite la eliminación de ruidos de baja frecuencia, como movimientos musculares o 
+respiración. En las simulaciones, se tomó la componente senoidal como en el caso anterior, pero ahora con una frecuencia baja para analizar el comportamiento de este filtro. 
+
+Por un lado, se utilizaron los valores de la consigna, siendo estos de 10 $\mu F$ y 4,7 $k \Omega$ con frecuencia de corte de 3,4 Hz. Luego, se reemplazó por uno con un capacitor de
+80 $\mu F$ con frecuencia de corte 0,4 Hz. Las figuras PONER NÚMEROS comprueban que, en el primer caso, el filtro actuó correctamente ya que la frecuencia de la senoidal era menor que la de corte,
+por ende a la salida se obtuvo una señal de ECG limpia; mientras que en el segundo caso, la frecuencia de corte del filtro era menor que la del ruido, dejándolo pasar y obteniéndose así una señal ruidosa con una
+deriva que hace que la señal oscile en un offset de la amplitud del ruido.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Simulacion ruido baja freq, filtro normal.JPG}
+    \caption{Salida del ECG con filtro pasa altos correcto}
+    \label{fig:fft_antes}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figuras/Simulacion ruido baja freq, filtro que deja pasar.JPG}
+    \caption{Salida del ECG con filtro pasa altos incorrecto}
+    \label{fig:fft_antes}
+\end{figure}
