@@ -29,7 +29,7 @@ f_c =
 Dado que el complejo QRS presenta variaciones más rápidas que otros
 componentes de la señal ECG, una frecuencia de corte $f_c=17.5~\mathrm{Hz}$ puede
 producir una atenuación de parte de dichas componentes. Como consecuencia,
-la morfología del complejo QRS puede verse modificada, observándose una
+la morfología del complejo QRS se ve modificada, observándose una
 señal más redondeada y con menor definición en las partes de altas frecuencias.
 
 Por lo tanto, si bien el filtrado permite reducir componentes de frecuencia
@@ -37,13 +37,11 @@ no deseadas como el ruido de línea, un valor de frecuencia de corte demasiado b
 una pérdida de información relevante de la señal electrocardiográfica.
 
 
-
-
 \subsection{Análisis mediante simulación}
 
 Para analizar el comportamiento del circuito bajo distintas condiciones, se empleó el programa \textit{LT Spice}. A continuación se presentan las
 distintas pruebas realizadas, en las cuales incluso se pudo hacer evaluaciones bajo componentes de valores no comerciales pero de mayor precisión
-numérica para mayor precisión en la salida de dicha simulación. 
+numérica para mayor exactitud en la salida de dicha simulación. 
 
 \begin{itemize}
     \item Circuito convencional de la consigna
@@ -56,9 +54,9 @@ numérica para mayor precisión en la salida de dicha simulación.
     \label{fig:fft_antes}
 \end{figure}
 La figura n° PONER NÚMERO presenta el circuito del ECG de un canal. Para ello, se descargaron los integrados del AD620 y TL072 para incluirlos en el programa,
-y así luego analizar la salida del mismo para distintas resitencias $R_{G}$ y consecuente ganancia. 
-La señal de ECG fue descargada de la base de datos del MIT-BIH disponible en Physionet. Inicialmente, se colocó una resistencia de 200 $k \Omega$ y se colocó la punta del osciloscopio en la salida
-del filtro pasa bajos. Se consideró la señal sin ruido de línea.
+y así luego analizar la salida del mismo para distintas resistencias $R_{G}$ y consecuentemente la ganancia obtenida. 
+La señal de ECG fue descargada de la base de datos del MIT-BIH disponible en Physionet. Inicialmente, se colocó una resistencia de 200 $k \Omega$ y se dispuso la punta del osciloscopio en la salida
+del filtro pasa bajos. Fue tomado a consideración que la señal no tiene ruido de línea.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.65\textwidth]{figuras/Simulacion circuito normal Rg 100.JPG}
@@ -73,4 +71,4 @@ del filtro pasa bajos. Se consideró la señal sin ruido de línea.
 \end{figure}
 
 Luego, las figuras n° PONER NÚMEROS muestran los casos para $R_{G}$ de 100 y 10 $k \Omega$. Ambas permiten comprobar que, a menor valor de resistencia, mayor es la amplificación del AD620 y la
-del ECG, dado que en la figura original el gráfico ronda los 4,5 V mientras que en los otros tres, se acercan incluso a 6 V, corroborando este aumento en la ganancia.
+del ECG, dado que en la figura original el gráfico ronda los 4,5 V mientras que en los otros tres, se acercan incluso a 6 V, corroborando el aumento de la ganancia.

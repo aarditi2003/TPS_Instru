@@ -4,8 +4,7 @@ En este trabajo práctico se logró armar en protoboard un canal básico de ECG 
 La práctica permitió ver en un caso real por qué el amplificador de instrumentación es la primera etapa elegida para este tipo de mediciones: su alta impedancia de entrada evita que la señal se atenúe por la impedancia de los electrodos, y su rechazo de modo común reduce buena parte de las interferencias que llegan por igual a ambas entradas.
 
 Con respecto a la ganancia, se comprobó que el valor de $R_G$ tiene un efecto directo sobre la señal obtenida.
-Con $100~\mathrm{k}\Omega$ la ganancia resultó demasiado baja y la señal no pudo observarse, mientras que al disminuir la resistencia la amplitud aumentó hasta llegar a una configuración adecuada para la medición.
-Sin embargo, la ganancia no puede aumentarse sin límite en la primera etapa, ya que también se amplifican el ruido y la componente continua, lo que puede llevar a la saturación del amplificador.
+Sin embargo, no puede aumentarse sin límite en la primera etapa, ya que también se amplifican el ruido y la componente continua, lo que puede llevar a la saturación del amplificador.
 Por eso resulta conveniente repartir la ganancia entre el AD620 y la etapa posterior con el amplificador operacional.
 
 En cuanto al filtrado, se observó que la elección de las frecuencias de corte implica un compromiso.
@@ -15,4 +14,4 @@ Esto muestra que las frecuencias de corte deben elegirse teniendo en cuenta el c
 A partir de lo observado, se proponen algunas mejoras para el circuito.
 En el filtrado, se podría ubicar el pasa altos cerca de $0{,}5~\mathrm{Hz}$ para eliminar las variaciones de la línea de base sin deformar la señal, el pasa bajos alrededor de $100~\mathrm{Hz}$, y agregar un filtro notch en $50~\mathrm{Hz}$ para atenuar el ruido de línea.
 En cuanto a la ganancia, sería útil reemplazar las resistencias fijas por un potenciómetro, de manera de poder ajustarla según la amplitud de la señal de cada persona.
-Por último, en la alimentación se podrían usar reguladores de tensión para que la salida no dependa de la descarga de las baterías, y agregar un circuito de pierna derecha para mejorar aún más el rechazo de modo común.
+Por último, se podría agregar un circuito de pierna derecha para mejorar la eliminación del ruido.
