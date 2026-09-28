@@ -1,24 +1,15 @@
 \section{Marco teórico}
-Para comprender el funcionamiento del canal de ECG implementado en esta práctica,
- es necesario analizar los principales conceptos relacionados con la amplificación y el
- acondicionamiento de señales biomédicas. En particular, se estudiará el funcionamiento
- del amplificador de instrumentación AD620, el rechazo de modo común mediante el CMRR
- y su aplicación en la adquisición de una señal de electrocardiograma.
+Para comprender el funcionamiento del canal de ECG implementado en esta práctica, es necesario analizar los principales conceptos relacionados con el acondicionamiento de señales biomédicas: el amplificador de instrumentación AD620, el rechazo de modo común (CMRR) y su aplicación en la adquisición de un electrocardiograma.
 
 \subsection{AD620}
-El AD620 es un amplificador de instrumentación integrado cuyo diseño tiene un doble objetivo:
- la amplificación precisa de señales diferenciales de pequeña amplitud y la supresión de señales de modo común. 
-Este amplificador es ampliamente utilizado en aplicaciones biomédicas debido a su alta impedancia de entrada, 
-bajo nivel de ruido y capacidad para operar con una amplia gama de voltajes de alimentación.
+El AD620 es un amplificador de instrumentación integrado cuyo diseño tiene un doble objetivo: la amplificación precisa de señales diferenciales de pequeña amplitud y la supresión de señales de modo común. 
+Este amplificador es ampliamente utilizado en aplicaciones biomédicas debido a su alta impedancia de entrada, bajo nivel de ruido y capacidad para operar con una amplia gama de voltajes de alimentación.
 Estas características hacen que el amplificador de instrumentación sea apropiado para aplicaciones como la adquisición de señales de ECG.
 
-Una de las principales características del AD620 es su alta impedancia de entrada, 
-especificada en el orden de los $10~\mathrm{G}\Omega$. Esto resulta particularmente importante en 
-aplicaciones biomédicas, ya que los electrodos utilizados para adquirir señales fisiológicas 
-presentan una impedancia propia. Si la impedancia de entrada del sistema de medición fuera comparable 
-con la impedancia electrodo-piel, podría producirse un divisor resistivo que atenuara la señal
- antes de que esta fuera amplificada. Una impedancia de entrada elevada minimiza este efecto 
-y permite obtener una medición más acertada de la señal biológica.
+Una de las principales características del AD620 es su alta impedancia de entrada, especificada en el orden de los $10~\mathrm{G}\Omega$.
+ Esto resulta particularmente importante en aplicaciones biomédicas, ya que los electrodos utilizados para adquirir señales fisiológicas presentan una impedancia propia.
+ Si la impedancia de entrada del sistema de medición fuera comparable con la impedancia electrodo-piel, podría producirse un divisor resistivo que atenuara la señal antes de que esta fuera amplificada.
+ Una impedancia de entrada elevada minimiza este efecto y permite obtener una medición más acertada de la señal biológica.
  
 Otra ventaja del AD620 es que su ganancia puede configurarse mediante una única resistencia externa $R_G$, conectada entre los terminales de ganancia del integrado.
 La relación entre la ganancia y dicha resistencia está dada por:
@@ -51,3 +42,13 @@ Un CMRR elevado indica que el amplificador amplifica principalmente la diferenci
 Esta característica resulta especialmente importante en aplicaciones biomédicas, donde pueden existir interferencias externas que se acoplan de manera similar a los dos electrodos. 
 
 \subsection{Aplicación en ECG}
+El electrocardiograma es el registro de la actividad eléctrica del corazón obtenido mediante electrodos colocados sobre la superficie corporal.
+ La señal medida presenta una amplitud pequeña, del orden de los milivolts, por lo que su adquisición requiere una etapa de acondicionamiento capaz de amplificarla sin introducir distorsiones significativas y de reducir las interferencias presentes durante la medición.
+ Para obtener el ECG se utilizan electrodos superficiales ubicados en brazo derecho, brazo izquierdo y pierna izquierda, que permiten visualizar las derivaciones DI, DII y DIII.
+ 
+Por lo tanto, debido a la pequeña amplitud de la señal cardíaca, el AD620 se utiliza como etapa de preamplificación diferencial, realzando la señal de interés y rechazando las interferencias de modo común presentes en el entorno pero sin aumentar de manera tan significativa la ganacia.
+ La ganancia se aumenta posteriormente mediante un amplificador operacional en configuración no inversora, que permite obtener la señal final con la amplitud adecuada para su visualización y procesamiento.
+ Luego de la preamplificación es necesario incorporar etapas de filtrado que permitan conservar las componentes relevantes de la señal cardíaca y atenuar aquellas que no forman parte de la información de interés.
+ En particular, un filtro pasa altos permite reducir la componente continua y las variaciones lentas de la línea de base, mientras que un filtro pasa bajos permite atenuar componentes de mayor frecuencia y parte del ruido presente en la medición.
+
+En resumen, el canal de ECG es una cadena de acondicionamiento: los electrodos captan la señal, el AD620 amplifica la componente diferencial y rechaza el modo común, y las etapas posteriores de amplificación y filtrado la adecuan para su análisis. 
