@@ -1,1 +1,14 @@
 \section{Introducción}
+
+El electrocardiograma (ECG) es una de las mediciones más comunes en medicina: con unos pocos electrodos colocados sobre la piel se puede registrar la actividad eléctrica del corazón de forma simple y no invasiva.
+Sin embargo, medir esta señal no es tan directo como parece.
+Su amplitud es muy chica, del orden de los milivolts, y suele llegar mezclada con interferencias bastante más grandes, como el ruido de la red eléctrica de 50~Hz, además de variaciones lentas de la línea de base causadas por la respiración, el movimiento o el contacto entre el electrodo y la piel.
+Por eso, antes de poder visualizar un ECG es necesario amplificar la señal y filtrarla de manera adecuada.
+
+La primera etapa de este proceso suele ser un amplificador de instrumentación, ya que tiene una impedancia de entrada muy alta, una ganancia fácil de ajustar y un buen rechazo de las señales de modo común.
+En este trabajo práctico se armó en protoboard un canal básico de ECG usando el amplificador de instrumentación AD620 junto con los dos amplificadores operacionales del integrado TL072.
+El circuito está formado por una etapa de preamplificación, una etapa de filtrado y una etapa de ganancia adicional.
+
+El objetivo principal fue entender cómo funciona un amplificador de instrumentación en una aplicación real y comprobar en la práctica el funcionamiento del canal de ECG.
+Para eso, se probaron distintos valores de la resistencia de ganancia $R_G$ del AD620 para ver cómo cambiaba la señal obtenida, y se analizó la etapa de filtrado para entender cómo las frecuencias de corte afectan la forma del ECG.
+A partir de esto, se propusieron posibles mejoras en el filtrado, la ganancia y la alimentación del circuito.
