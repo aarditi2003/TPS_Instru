@@ -1,2 +1,48 @@
 \section{Marco teórico}
+\subsection{Principio físico de la oximetría de pulso}
+La saturación de oxígeno en sangre arterial ($SpO_2$) define la proporción entre la concentración de hemoglobina oxigenada ($\text{HbO}_2$) y la concentración total de hemoglobina funcional ($\text{HbO}_2 + \text{Hb}$) presente en la muestra vascular:
+\begin{equation}
+    SpO_2 (\%) = \frac{[\text{HbO}_2]}{[\text{HbO}_2] + [\text{Hb}]} \times 100
+\end{equation}
 
+El principio óptico de medición se rige por la Ley de Beer-Lambert, la cual establece que la intensidad de luz transmitida $I$ a través de un medio absorbente decrece exponencialmente con respecto a la intensidad incidente $I_0$, la concentración del soluto $c$, el coeficiente de extinción molar $\epsilon(\lambda)$ a una determinada longitud de onda $\lambda$, y la longitud del trayecto óptico $d$:
+\begin{equation}
+    I(\lambda) = I_0(\lambda) \cdot e^{-\epsilon(\lambda) \cdot c \cdot d}
+\end{equation}
+
+La molécula de hemoglobina modifica sus propiedades de absorción óptica según su estado de oxigenación:
+\begin{itemize}
+    \item \textbf{Luz Roja ($\lambda \approx 660\text{ nm}$):} La desoxihemoglobina ($\text{Hb}$) presenta un coeficiente de extinción molar significativamente mayor que la oxihemoglobina ($\text{HbO}_2$), absorbiendo más luz roja.
+    \item \textbf{Luz Infrarroja ($\lambda \approx 900\text{--}940\text{ nm}$):} La oxihemoglobina ($\text{HbO}_2$) presenta una mayor absorción respecto a la hemoglobina desoxigenada.
+\end{itemize}
+
+\subsection{La señal Fotopletismográfica (PPG)}
+Cuando la luz emitida por los LEDs atraviesa el tejido, parte de la radiación es absorbida y dispersada por estructuras fijas (piel, hueso, tejido muscular y sangre venosa) y parte por la sangre arterial pulsátil. El fotodetector capta la luz transmitida produciendo una señal fotopletismográfica (PPG) compuesta por dos componentes principales:
+\begin{itemize}
+    \item \textbf{Componente Continua ($\text{DC}$):} Representa la atenuación óptica constante debida a los tejidos no pulsátiles y al volumen sanguíneo basal venoso y arterial[cite: 8].
+    \item \textbf{Componente Alterna ($\text{AC}$):} Representa las variaciones en el volumen sanguíneo arterial provocadas por el ciclo cardíaco (sístole y diástole).
+\end{itemize}
+
+Para eliminar variaciones indeseadas producidas por la intensidad absoluta de las fuentes ópticas o el grosor del tejido, se calcula el cociente de relaciones $R$:
+\begin{equation}
+    R = \frac{\left( \frac{\text{AC}}{\text{DC}} \right)_{\text{Rojo}}}{\left( \frac{\text{AC}}{\text{DC}} \right)_{\text{IR}}}
+\end{equation}
+Este parámetro adimensional $R$ se relaciona cuantitativamente con el porcentaje de $SpO_2$ a través de curvas de calibración empíricas deducidas experimentalmente.
+
+\subsection{Estructura del sensor BCI y conector DB9}
+Los sensores de oximetría comercial tipo BCI constan de un ensamble constituido por dos emisores de luz (un LED rojo y un LED infrarrojo) y un fotodiodo semiconductor sensible al espectro visible e infrarrojo cercano. 
+
+Para reducir la cantidad de conductores en el cable paciente, los emisores suelen conectarse internamente en antiparalelo (\textit{back-to-back}) o con una terminal común. Las conexiones eléctricas hacia el equipo de medición se realizan mediante una ficha normalizada tipo DB9. La caracterización eléctrica del sensor mediante mediciones de resistencia y prueba de diodos permite identificar la polaridad y los pines específicos correspondientes a:
+\begin{enumerate}
+    \item Ánodo y cátodo de los LEDs de emisión (rojo e infrarrojo).
+    \item Terminales del fotodiodo detector.
+    \item Pantalla o blindaje del cable paciente frente a interferencias electromagnéticas externas.
+\end{enumerate}
+
+
+\subsection{Excitación de los diodos emisores (LEDs)}
+Para garantizar un flujo fotónico constante en el tejido, los LEDs de emisión deben ser polarizados mediante una fuente de corriente o una rama limitadora de tensión/resistencia. La corriente directa $I_D$ que circula por el emisor se calcula a partir de la ley de Ohm en el lazo de excitación:
+\begin{equation}
+    I_D = \frac{V_{CC} - V_D}{R_{\text{lim}}}
+\end{equation}
+donde $V_{CC}$ es la tensión de alimentación del circuito, $V_D$ es la caída de tensión directa del LED ($\approx 1.5\text{--}2.2\text{ V}$) y $R_{\text{lim}}$ es la resistencia limitadora de corriente (por ejemplo, $220\ \Omega$). Controlar este valor evita la saturación del fotodetector y limita el disipado térmico en los emisores del sensor.
