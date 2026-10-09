@@ -1,0 +1,68 @@
+\section{Práctica de laboratorio}
+
+\subsection{Identificación del sensor de oximetría}
+En la primera etapa del trabajo práctico se estudió el sensor de SpO$_2$ BCI, utilizado para la medición de la saturación de oxígeno mediante oximetría de pulso. Para reconocer las conexiones eléctricas del sensor, se analizaron el cable paciente y su conector DB9 mediante mediciones de resistencia y continuidad. Estas mediciones permitieron identificar las conexiones correspondientes a los componentes del sensor para utilizarlas en el armado del circuito. 
+
+\subsection{Armado de circuito sensor de luz roja e IR}
+
+Durante la práctica de laboratorio se implementó en un protoboard un circuito que sensa la intensidad de la luz de los emisores rojo e IR. Su funcionamiento se basa en el funcionamiento del amplificador operacional TL082, que convierte la corriente generada por el fotodetector en una tensión de salida, adecuada para su medición en el osciloscopio. 
+
+Los componentes utilizados para la implementación fueron:
+
+\begin{itemize}
+    \item Integrado TL082, utilizando dos de sus amplificadores operacionales.
+    \item Resistencia de $1M~\Omega$ para la realimentación del TL082.
+    \item Resistencia de $220~\Omega$ para modificar la intensidad de la luz del sensor.
+    \item Sensor SpO$_2$ BCI con ficha DB9
+    \item Protoboard y cables de conexión.
+    \item 2 baterías de $9~\mathrm{V}$
+\end{itemize}
+
+En la Figura~ se muestra el circuito amplificador de transimpedancia analizado. El circuito incorpora una resistencia de realimentación de $R_2=1\,\mathrm{M}\Omega$, conectada entre la salida y la entrada inversora del amplificador que determina la relación entre la corriente de entrada y la tensión de salida.
+Asimismo, se representan los diodos $D_1$ y $D_2$ presentes en el sensor de SpO$_2$ BCI, junto con una resistencia de $220\,\Omega$ asociada al diodo emisor. El amplificador operacional se alimenta con tensiones de $+9\,\mathrm{V}$ y $-9\,\mathrm{V}$, mientras que su entrada no inversora se conecta a tierra.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{circuitikz}[scale=1, transform shape]
+    
+        % Amplificador operacional
+        \draw (4,0) node[op amp] (U1) {};
+        \node at (4,-0.8) {TL082};
+        
+        % Entrada no inversora a tierra
+        \draw (U1.+) -- ++(-1,0) node[ground]{};
+        
+        % Nodo inversor
+        \coordinate (N) at (2.5,0.3);
+        \draw (U1.-) -- (N);
+        
+        % Realimentación: R2 y C1 en paralelo
+        \draw (N) -- (2.5,2.5) -- (3,2.5)
+            to[R,l={$R_2=1\,\mathrm{M}\Omega$}] (5,2.5)
+            -- (5,0.3);
+        
+        % Salida
+        \draw (U1.out) -- ++(1.2,0) node[right] {$V_{\mathrm{out}}$};
+        
+        % Diodo D1 en la entrada inversora
+        \draw (N) -- (1.2,0.3)
+            to[D,l_=$D_1$] (1.2,2.0)
+            node[above] {$+9\,\mathrm{V}$};
+        
+        % Diodo D2 con resistencia de 220 ohm en serie
+        \draw (-1,1.2) node[above] {$+9\,\mathrm{V}$}
+            to[D,l={$D_2$}] (-1,-0.3)
+            to[R,l={$220\,\Omega$}] (-1,-1.8)
+            node[ground] {};
+        
+        % Alimentación simétrica del operacional
+        \draw (U1.up) -- ++(0,1.0) node[above] {$+9\,\mathrm{V}$};
+        \draw (U1.down) -- ++(0,-1.0) node[below] {$-9\,\mathrm{V}$};
+        
+    \end{circuitikz}
+    \caption{Circuito amplificador de transimpedancia.}
+    \label{fig:transimpedancia}
+\end{figure}
+
+
+
