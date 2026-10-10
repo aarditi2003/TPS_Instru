@@ -1,2 +1,35 @@
 \section{Resultados}
 
+A partir del circuito implementado se analizó la señal obtenida a la salida del amplificador utilizando el osciloscopio.
+
+\subsection{Caracterización del sensor de oximetría}
+En una primera etapa, se analizaron las conexiones eléctricas del sensor de oximetría BCI mediante mediciones de resistencia y continuidad sobre el cable paciente y su conector DB9. El objetivo fue identificar los terminales asociados a los diodos emisores de luz y al fotodetector, a fin de establecer las conexiones necesarias para implementar el circuito de sensado.
+La identificación de estos terminales constituye un paso fundamental para el funcionamiento del sistema, dado que los emisores deben recibir una polarización adecuada para generar la radiación óptica, mientras que el fotodetector debe conectarse de manera que permita registrar la luz recibida. Una conexión incorrecta o una polarización inadecuada de cualquiera de estos componentes puede impedir la generación de una señal eléctrica medible.
+
+\subsection{Análisis del circuito amplificador}
+El propósito del amplificador operacional TL072 utilizado durante la práctica es convertir la corriente generada por el fotodetector en una tensión de salida susceptible de ser medida mediante un osciloscopio.
+El funcionamiento esperado del circuito se fundamenta en el principio de transimpedancia. Cuando la luz incidente alcanza el fotodetector, se genera una corriente eléctrica que, idealmente, produce una variación de tensión en la salida del amplificador. Considerando el comportamiento ideal del circuito y la convención de corriente correspondiente, la relación entre ambas magnitudes puede expresarse como:
+
+\begin{equation}
+V_{out} = -I_{photo} \cdot R_f
+\end{equation}
+
+Esta expresión muestra que la sensibilidad de la etapa depende de la resistencia de realimentación: para una misma corriente fotogenerada, un valor mayor de \(R_2\) produce una variación de tensión de mayor magnitud. En particular, para la resistencia utilizada, una corriente de \(1\,\mu\text{A}\) produciría idealmente una variación de salida de aproximadamente \(1\,\text{V}\). Este valor constituye una referencia teórica y no una medición obtenida durante la práctica.
+Por otra parte, si la intensidad de luz recibida por el fotodetector se mantiene aproximadamente constante, se espera obtener una componente continua en la salida. Si la luz recibida varía en el tiempo, también pueden producirse variaciones de tensión asociadas a dicha modificación. En una medición de oximetría de pulso realizada sobre un dedo, las variaciones periódicas del volumen sanguíneo arterial pueden generar una componente pulsátil en la señal fotopletismográfica, superpuesta a una componente continua de mayor magnitud.
+Sin embargo, durante la experiencia no se logró observar en el osciloscopio una señal de salida claramente definida que permitiera verificar el comportamiento esperado. La respuesta obtenida no presentó variaciones suficientemente distinguibles para caracterizar la señal del fotodetector ni identificar de manera confiable una componente pulsátil asociada al ciclo cardíaco. En consecuencia, no fue posible determinar experimentalmente la sensibilidad efectiva del circuito ni establecer una relación cuantitativa entre la intensidad de luz recibida y la tensión de salida.
+
+\subsection{Análisis de los resultados esperados}
+El objetivo de esta etapa consiste en detectar las variaciones de la intensidad luminosa recibida por el fotodetector y convertirlas en una señal de tensión que permita estudiar el fenómeno fotopletismográfico.
+Cuando el sensor se encuentra colocado sobre un dedo, la luz emitida por los LED atraviesa los tejidos y es recibida por el fotodetector. La cantidad de luz detectada depende, entre otros factores, de la absorción y dispersión producidas por los tejidos y de las variaciones del volumen sanguíneo arterial durante el ciclo cardíaco. En consecuencia, la corriente generada por el fotodetector presenta una componente variable asociada al pulso, que puede ser convertida en una variación de tensión mediante el amplificador de transimpedancia.
+La señal fotopletismográfica esperada está constituida por dos componentes principales. Por un lado, la componente continua (DC) corresponde al nivel de base de la señal y refleja la contribución de la iluminación media recibida, junto con la absorción y dispersión de la luz en los tejidos y el volumen sanguíneo presente. Por otro lado, la componente alterna (AC), de menor amplitud, representa las variaciones periódicas de la señal asociadas principalmente a los cambios del volumen sanguíneo arterial y venoso durante el ciclo cardíaco. La relación entre ambas componentes permite obtener información sobre la saturación de oxígeno en la sangre y otros parámetros fisiológicos.
+La Figura 2, adjuntada a continuación, muestra la señal fotopletismográfica esperada. 
+
+PONER FIGURA 2!!!!!!!!!!!!!!!!!
+
+Sobre un nivel de base relativamente estable se observan oscilaciones periódicas correspondientes a los ciclos cardíacos. Cada pulso presenta habitualmente un ascenso asociado al aumento del volumen sanguíneo durante la sístole, seguido de un descenso durante la diástole
+La amplitud de la componente pulsátil suele ser considerablemente menor que la de la componente continua, por lo que su identificación puede requerir una escala de visualización adecuada o una etapa posterior de filtrado y amplificación. Asimismo, la forma de onda y su amplitud pueden verse afectadas por el posicionamiento del sensor, la presión ejercida sobre el dedo, los movimientos, las condiciones de iluminación y las características del circuito de adquisición.
+
+\subsection{Análisis de las limitaciones experimentales}
+La diferencia entre el comportamiento esperado y el observado indica que el funcionamiento del sistema no pudo verificarse satisfactoriamente durante la práctica. No obstante, la ausencia de una señal claramente identificable no permite concluir que el principio de funcionamiento del circuito sea incorrecto, sino que existe una limitación en las condiciones de implementación o medición de nuestro circuito.
+Entre los factores que podrían explicar el resultado se encuentran posibles errores en las conexiones del sensor BCI, una polarización inadecuada de los diodos, dificultades en las conexiones del amplificador operacional. Asimismo, la disposición de los componentes en el protoboard, las conexiones de alimentación y la referencia de tierra pueden influir en el comportamiento del circuito y también podrían influir en la falla.
+En particular, el uso de una resistencia de realimentación de \(1\,\text{M}\Omega\) permite obtener una elevada conversión de corriente a tensión, pero no garantiza por sí mismo una señal de salida adecuada. La respuesta también depende de la corriente efectivamente generada por el fotodetector, de las condiciones de iluminación y de las limitaciones prácticas del amplificador.
