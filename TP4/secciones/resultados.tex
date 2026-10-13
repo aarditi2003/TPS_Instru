@@ -27,7 +27,66 @@ Cuando el sensor se encuentra colocado sobre un dedo, la luz emitida por los LED
 La señal fotopletismográfica esperada está constituida por dos componentes principales. Por un lado, la componente continua (DC) corresponde al nivel de base de la señal y refleja la contribución de la iluminación media recibida, junto con la absorción y dispersión de la luz en los tejidos y el volumen sanguíneo presente. Por otro lado, la componente alterna (AC), de menor amplitud, representa las variaciones periódicas de la señal asociadas principalmente a los cambios del volumen sanguíneo arterial y venoso durante el ciclo cardíaco. La relación entre ambas componentes permite obtener información sobre la saturación de oxígeno en la sangre y otros parámetros fisiológicos.
 La Figura 2, adjuntada a continuación, muestra la señal fotopletismográfica esperada. 
 
-PONER FIGURA 2!!!!!!!!!!!!!!!!!
+\begin{tikzpicture}[xscale=1.1, yscale=1.0]
+  % --- Parámetros de nivel ---
+  \def\yDC{2.0}
+  \def\yMax{4.7}
+
+  % --- Sombreado de regiones DC y AC ---
+  \fill[blue!8!white] (0,0) rectangle (8.2, \yDC);
+  \fill[red!8!white] (0,\yDC) rectangle (8.2, \yMax);
+
+  % --- Ejes coordenados ---
+  \draw[-Stealth, thick] (0,0) -- (8.7,0) node[right, font=\small] {Tiempo ($t$)};
+  \draw[-Stealth, thick] (0,0) -- (0,5.4) node[above, font=\small] {Tensión ($V_{\text{out}}$)};
+
+  % --- Línea discontinua nivel DC ---
+  \draw[blue!70!black, dashed, thick] (0,\yDC) -- (8.2,\yDC) node[right, font=\footnotesize] {Nivel Base (DC)};
+
+  % --- Señal Fotopletismográfica (PPG) ---
+  \draw[red!80!black, line width=1.5pt, smooth] 
+    (0.2, \yDC) 
+    % Ciclo 1
+    .. controls (0.4, \yDC) and (0.7, 4.6) .. (1.0, 4.7) % Pico sistólico
+    .. controls (1.2, 3.5) and (1.3, 2.9) .. (1.5, 3.2) % Muesca dicróta
+    .. controls (1.7, 3.4) and (1.9, 2.8) .. (2.2, 2.3)
+    .. controls (2.4, \yDC) .. (2.7, \yDC)
+    % Ciclo 2
+    .. controls (2.9, \yDC) and (3.2, 4.6) .. (3.5, 4.7)
+    .. controls (3.7, 3.5) and (3.8, 2.9) .. (4.0, 3.2)
+    .. controls (4.2, 3.4) and (4.4, 2.8) .. (4.7, 2.3)
+    .. controls (4.9, \yDC) .. (5.2, \yDC)
+    % Ciclo 3
+    .. controls (5.4, \yDC) and (5.7, 4.6) .. (6.0, 4.7)
+    .. controls (6.2, 3.5) and (6.3, 2.9) .. (6.5, 3.2)
+    .. controls (6.7, 3.4) and (6.9, 2.8) .. (7.2, 2.3)
+    .. controls (7.4, \yDC) .. (7.8, \yDC);
+
+  % --- Señalización de puntos característicos ---
+  \fill[red!80!black] (3.5, 4.7) circle (2pt);
+  \draw[Stealth-, thin] (3.5, 4.78) -- (3.5, 5.2) node[above, font=\footnotesize] {Pico Sistólico};
+
+  \fill[red!80!black] (4.0, 3.2) circle (2pt);
+  \draw[Stealth-, thin] (4.05, 3.24) -- (4.7, 3.8) node[right, font=\footnotesize] {Incisura / Muesca Dicróta};
+
+  % --- Llaves para Componentes AC y DC ---
+  \draw[decorate, decoration={brace, mirror, raise=4pt, amplitude=6pt}, thick, blue!80!black]
+    (0.05, 0) -- (0.05, \yDC) node[midway, xshift=-22pt, font=\small, align=center] {Comp.\\DC};
+
+  \draw[decorate, decoration={brace, mirror, raise=4pt, amplitude=6pt}, thick, red!80!black]
+    (0.05, \yDC) -- (0.05, 4.7) node[midway, xshift=-22pt, font=\small, align=center] {Comp.\\AC};
+
+  % --- Período cardíaco (T) ---
+  \draw[Stealth-Stealth, thick] (1.0, 4.9) -- (3.5, 4.9) node[midway, above, font=\footnotesize] {Período Cardíaco ($T$)};
+  \draw[gray, dotted] (1.0, 4.7) -- (1.0, 5.1);
+  \draw[gray, dotted] (3.5, 4.7) -- (3.5, 5.1);
+\end{tikzpicture}
+\begin{figure}[htbp]
+  \centering
+  % [Aquí va el \begin{tikzpicture} ... \end{tikzpicture}]
+  \caption{Curva pletismográfica.}
+  \label{fig:curva_pletismografica}
+\end{figure}
 
 Sobre un nivel de base relativamente estable se observan oscilaciones periódicas correspondientes a los ciclos cardíacos. Cada pulso presenta habitualmente un ascenso asociado al aumento del volumen sanguíneo durante la sístole, seguido de un descenso durante la diástole.
 La amplitud de la componente pulsátil suele ser considerablemente menor que la de la componente continua, por lo que su identificación puede requerir una escala de visualización adecuada o una etapa posterior de filtrado y amplificación. Asimismo, la forma de onda y su amplitud pueden verse afectadas por el posicionamiento del sensor, la presión ejercida sobre el dedo, los movimientos, las condiciones de iluminación y las características del circuito de adquisición.
